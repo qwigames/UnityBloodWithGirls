@@ -14,5 +14,11 @@ public class Damage : MonoBehaviour
             collision.gameObject.SendMessage("TakeDamage");
 
         }
+        if (collision.gameObject.tag == "npc")
+        {
+
+            collision.gameObject.SendMessage("TakeDamage");
+
+        }
     }
 }
