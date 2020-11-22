@@ -8,6 +8,8 @@ public class chasing : MonoBehaviour
     public GameObject player;
     public float range;
     public Animator anim;
+    string theCollider;
+    public GameObject receiver;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -19,12 +21,18 @@ public class chasing : MonoBehaviour
     void Update()
     {   if(Vector3.Distance(player.transform.position,transform.position)< range)
            agent.SetDestination(player.transform.position);
-         if (Vector3.Distance(player.transform.position, transform.position) >= 1)
-        {
-            anim.SetBool("Range", true);
-        }
+
             
 
 
+    }
+    public void OnTriggerEnter(Collider other)
+    {
+        theCollider = other.tag;
+        if (theCollider == "Player")
+        {
+            receiver.SendMessage("DecrasaseHealth");
+
+        }
     }
 }
